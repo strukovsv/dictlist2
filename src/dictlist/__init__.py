@@ -1,4 +1,4 @@
-import logging
+import logging # noqa
 from typing import Union, List, Any, Dict, Iterator, Tuple, Self
 
 
@@ -32,7 +32,8 @@ class DictList(list):
             {"id": 2, "name": "Bob"},
             {"id": 1, "name": "Alice"},  # дубликат
             {"id": 3, "name": "Charlie"},
-            {"name": "Bob", "id": 2}, # считается дубликатом (ключи и значения те же)
+            {"name": "Bob", "id": 2}, # считается дубликатом
+            (ключи и значения те же)
         ])
 
         result = data.unique()

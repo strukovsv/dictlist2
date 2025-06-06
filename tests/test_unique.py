@@ -1,4 +1,4 @@
-import logging
+import logging # noqa
 
 from dictlist import DictList
 
