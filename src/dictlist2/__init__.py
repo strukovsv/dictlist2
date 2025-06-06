@@ -1,5 +1,6 @@
-import logging # noqa
+import logging  # noqa
 from typing import Union, List, Any, Dict, Iterator, Tuple, Self
+from functools import reduce
 
 
 class DictList2(list):
@@ -484,16 +485,39 @@ class DictList2(list):
         # Универсальные агрегаторы
         def apply_aggregation(items: List[dict], field: str, agg: str) -> Any:
             values = [item.get(field, 0) for item in items]
+
+            def zero(value):
+                return 0 if value is None else value
+
             if agg == "sum":
-                return sum(values)
+                # return sum(values)
+                return reduce(lambda acc, x: acc + zero(x), values)
             elif agg == "count":
                 return len(items)
             elif agg == "avg":
-                return sum(values) / len(values) if values else 0
+                return (
+                    reduce(lambda acc, x: acc + zero(x), values) / len(values)
+                    if values
+                    else 0
+                )
             elif agg == "min":
-                return min(values) if values else 0
+                return (
+                    reduce(
+                        lambda a, b: zero(a) if zero(a) < zero(b) else zero(b),
+                        values,
+                    )
+                    if values
+                    else 0
+                )
             elif agg == "max":
-                return max(values) if values else 0
+                return (
+                    reduce(
+                        lambda a, b: zero(a) if zero(a) > zero(b) else zero(b),
+                        values,
+                    )
+                    if values
+                    else 0
+                )
             else:
                 raise ValueError(f"Unknown aggregation type: {agg}")
 
