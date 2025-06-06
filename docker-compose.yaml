@@ -1,0 +1,9 @@
+# Это файл запуска процесса на stage
+services:
+
+  tests:
+    build: .
+    volumes:
+      - ./src/.:/app/.
+      - ./tests/.:/tests
+    command: bash -c "python -m pytest /tests/* --log-cli-level=INFO"
