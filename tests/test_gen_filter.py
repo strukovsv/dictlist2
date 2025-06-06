@@ -1,6 +1,4 @@
 import logging  # noqa
-import pytest
-from typing import List, Dict, Any
 
 from dictlist2 import DictList2
 
