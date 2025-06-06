@@ -1,6 +1,6 @@
-# DictList
+# DictList2
 
-**DictList** — это лёгкая Python-библиотека, расширяющая стандартный список
+**DictList2** — это лёгкая Python-библиотека, расширяющая стандартный список
 для удобной работы с массивами словарей.
 
 ## Возможности
@@ -17,15 +17,15 @@
 ## Установка
 
 ```bash
-pip install dictlist
+pip install dictlist2
 ```
 
 ## Пример использования
 
 ```python
-from dictlist import DictList
+from dictlist2 import DictList2
 
-data = DictList([
+data = DictList2([
     {"project": "A", "user": "Anna", "hours": 2},
     {"project": "A", "user": "Ivan", "hours": 3},
     {"project": "B", "user": "Anna", "hours": 4},
@@ -42,7 +42,7 @@ for row in result:
     print(row)
 ```
 
-## Когда использовать DictList?
+## Когда использовать DictList2?
 
 - Обработка данных из баз данных или API.
 - Построение отчётов без использования Pandas.

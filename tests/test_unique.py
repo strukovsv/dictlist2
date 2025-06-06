@@ -1,10 +1,10 @@
 import logging # noqa
 
-from dictlist import DictList
+from dictlist2 import DictList2
 
 
 def test_001():
-    data = DictList(
+    data = DictList2(
         [
             {"id": 1, "name": "Alice"},
             {"id": 2, "name": "Bob"},

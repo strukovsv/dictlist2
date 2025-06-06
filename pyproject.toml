@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 
-name = "DictList"
+name = "DictList2"
 dynamic = ["version"]
 
 authors = [
@@ -37,8 +37,8 @@ dependencies = [
 ]
 
 [tool.setuptools.dynamic]
-version = { attr = "dictlist._version.VERSION" }
+version = { attr = "dictlist2._version.VERSION" }
 
 [project.urls]
-Homepage = "https://github.com/strukovsv/dictlist"
-Issues = "https://github.com/strukovsv/dictlist/issues"
+Homepage = "https://github.com/strukovsv/dictlist2"
+Issues = "https://github.com/strukovsv/dictlist2/issues"

@@ -33,7 +33,7 @@ jobs:
           PYTHONPATH: "./src"
           MYGITHUB_OWNER: "strukovsv"
           MYGITHUB_TOKEN: ${{ secrets.MYGITHUB_TOKEN }}
-          MYGITHUB_REPO: "dictlist"
+          MYGITHUB_REPO: "dictlist2"
           MYGITHUB_BRANCH: "master"
         run: |
           pip install pytest
