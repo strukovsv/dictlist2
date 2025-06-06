@@ -2,7 +2,7 @@ import logging # noqa
 from typing import Union, List, Any, Dict, Iterator, Tuple, Self
 
 
-class DictList(list):
+class DictList2(list):
     """
     Расширенный список для работы с массивами словарей.
 
@@ -27,7 +27,7 @@ class DictList(list):
         """
         Возвращает список уникальных словарей на основе всех ключей и значений.
 
-        data = DictList([
+        data = DictList2([
             {"id": 1, "name": "Alice"},
             {"id": 2, "name": "Bob"},
             {"id": 1, "name": "Alice"},  # дубликат
@@ -55,7 +55,7 @@ class DictList(list):
                 seen.add(key)
                 result.append(item)
 
-        return DictList(result)
+        return DictList2(result)
 
     def sort(
         self, by: Union[str, List[str]] = None, reverse: bool = False
@@ -65,7 +65,7 @@ class DictList(list):
 
         # Пример 1: Сортировка по одному полю
 
-        data = DictList([
+        data = DictList2([
             {"id": 3, "name": "Charlie"},
             {"id": 1, "name": "Alice"},
             {"id": 2, "name": "Bob"},
@@ -79,7 +79,7 @@ class DictList(list):
 
         # Пример 2: Сортировка по нескольким ключам
 
-        data = DictList([
+        data = DictList2([
             {"city": "Moscow", "age": 30},
             {"city": "Moscow", "age": 25},
             {"city": "London", "age": 40},
@@ -99,7 +99,7 @@ class DictList(list):
             return self
 
         if isinstance(by, list):
-            return DictList(
+            return DictList2(
                 sorted(
                     self,
                     key=lambda item: tuple(item[key] for key in by),
@@ -107,7 +107,7 @@ class DictList(list):
                 )
             )
 
-        return DictList(
+        return DictList2(
             sorted(self, key=lambda item: item[by], reverse=reverse)
         )
 
@@ -130,7 +130,7 @@ class DictList(list):
         --------
         Уникальность по всем полям:
 
-        >>> data = DictList([
+        >>> data = DictList2([
         ...     {"id": 1, "name": "Alice"},
         ...     {"id": 1, "name": "Alice"},
         ...     {"id": 2, "name": "Bob"},
@@ -145,7 +145,7 @@ class DictList(list):
 
         Уникальность по нескольким полям:
 
-        >>> data = DictList([
+        >>> data = DictList2([
         ...     {"id": 1, "project": "A", "name": "Anna"},
         ...     {"id": 2, "project": "A", "name": "Anna"},
         ...     {"id": 3, "project": "B", "name": "Anna"},
@@ -192,7 +192,7 @@ class DictList(list):
 
         Примеры:
         --------
-        >>> data = DictList([
+        >>> data = DictList2([
         ...     {"id": 1, "name": "Alice", "role": "Admin"},
         ...     {"id": 2, "name": "Bob", "role": "User"},
         ...     {"id": 3, "name": "Alice", "role": "User"},
@@ -217,8 +217,8 @@ class DictList(list):
         filtered = [item for item in self if matches(item)]
 
         if order:
-            return DictList(filtered).sort(by=order)
-        return DictList(filtered)
+            return DictList2(filtered).sort(by=order)
+        return DictList2(filtered)
 
     def gen_filter(
         self,
@@ -237,7 +237,7 @@ class DictList(list):
 
         Примеры:
         --------
-        >>> data = DictList([
+        >>> data = DictList2([
         ...     {"project": "A", "user": "Anna", "hours": 2},
         ...     {"project": "A", "user": "Ivan", "hours": 3},
         ...     {"project": "B", "user": "Anna", "hours": 4},
@@ -275,7 +275,7 @@ class DictList(list):
                 )
 
             elif order:
-                group_items = DictList(group_items).sort(by=order)
+                group_items = DictList2(group_items).sort(by=order)
 
             yield group_key, group_items
 
@@ -285,7 +285,7 @@ class DictList(list):
         с другим по заданному ключу.
 
         # Левый список (основной)
-        left = DictList([
+        left = DictList2([
             {"id": 1, "name": "Alice"},
             {"id": 2, "name": "Bob"},
             {"id": 3, "name": "Charlie"},
@@ -317,7 +317,7 @@ class DictList(list):
             match = right_index.get(item.get(key))
             if match:
                 result.append({**item, **match})
-        return DictList(result)
+        return DictList2(result)
 
     def left_join(
         self, right: List[Dict[str, Any]], key: str
@@ -327,7 +327,7 @@ class DictList(list):
         с другим по указанному ключу.
 
         # Пример левого списка (основа)
-        left = DictList([
+        left = DictList2([
             {"id": 1, "name": "Alice"},
             {"id": 2, "name": "Bob"},
             {"id": 3, "name": "Charlie"},
@@ -376,7 +376,7 @@ class DictList(list):
         Сгруппировать список словарей по указанным полям и просуммировать
         числовые значения.
 
-        data = DictList([
+        data = DictList2([
             {"project": "A", "user": "Anna", "hours": 2, "cost": 100},
             {"project": "A", "user": "Anna", "hours": 1, "cost": 150},
             {"project": "A", "user": "Ivan", "hours": 3, "cost": 200},
@@ -414,20 +414,20 @@ class DictList(list):
         # Если нет группировки — просто считаем сумму по всему списку
         if not group_keys:
             if not sum_fields:
-                return DictList([])
+                return DictList2([])
 
             total = {field: 0 for field in sum_fields}
             for item in self:
                 for field in sum_fields:
                     total[field] += item.get(field, 0)
-            return DictList([total])
+            return DictList2([total])
 
         # Группировка по полям
         result = []
-        unique_groups = DictList(self).distinct(group_keys)
+        unique_groups = DictList2(self).distinct(group_keys)
 
         for group in unique_groups:
-            group_data = DictList(self).filter(group)
+            group_data = DictList2(self).filter(group)
             group_total = {}
 
             if sum_fields:
@@ -438,7 +438,7 @@ class DictList(list):
 
             result.append({**group, **group_total})
 
-        return DictList(result)
+        return DictList2(result)
 
     def aggregate(
         self,
@@ -449,7 +449,7 @@ class DictList(list):
         Универсальная группировка с поддержкой агрегаций:
         sum, count, avg, min, max.
 
-        data = DictList([
+        data = DictList2([
             {"project": "A", "hours": 5},
             {"project": "A", "hours": 3},
             {"project": "B", "hours": 8},
@@ -511,11 +511,11 @@ class DictList(list):
             return [result]
 
         # Группировка по ключам
-        unique_groups = DictList(self).distinct(group_keys)
+        unique_groups = DictList2(self).distinct(group_keys)
         results = []
 
         for group_filter in unique_groups:
-            group_data = DictList(self).filter(group_filter)
+            group_data = DictList2(self).filter(group_filter)
             aggregated = {}
 
             for field, ops in aggregations.items():
