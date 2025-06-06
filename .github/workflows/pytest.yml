@@ -33,10 +33,9 @@ jobs:
           PYTHONPATH: "./src"
           MYGITHUB_OWNER: "strukovsv"
           MYGITHUB_TOKEN: ${{ secrets.MYGITHUB_TOKEN }}
-          MYGITHUB_REPO: "PAQLang" 
+          MYGITHUB_REPO: "dictlist"
           MYGITHUB_BRANCH: "master"
         run: |
           pip install pytest
           cd src
-          python -m pytest ../tests/main/test* --log-cli-level=INFO
-          python -m pytest ../tests/github/test* --log-cli-level=INFO
+          python -m pytest ../tests/test* --log-cli-level=INFO
