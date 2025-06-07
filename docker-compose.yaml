@@ -1,6 +1,13 @@
 # Это файл запуска процесса на stage
 services:
 
+  example:
+    build: .
+    volumes:
+      - ./src/.:/app/.
+      - ./doc/.:/doc
+    command: bash -c "python /doc/example1.py"
+
   tests:
     build: .
     volumes:
