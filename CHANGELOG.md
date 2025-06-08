@@ -1,3 +1,15 @@
+## [1.0.2](https://github.com/strukovsv/dictlist2/compare/v1.0.1...v1.0.2) (2025-06-08)
+
+
+### doc
+
+* Пример использование библиотеки с формированием отчетов. И решение багов по поводу приведения типов. ([1fb374c](https://github.com/strukovsv/dictlist2/commit/1fb374cfcc60b5ba1811d1a7972f5a4925ddf797))
+* тестовый пример ([aeeaebc](https://github.com/strukovsv/dictlist2/commit/aeeaebcdcac24378cb815380c3bfd9ee01268a9f))
+
+### style
+
+* flake8 ([b351c10](https://github.com/strukovsv/dictlist2/commit/b351c10dc6882cee690a1cb3078043adef01ca93))
+
 ## [1.0.1](https://github.com/strukovsv/dictlist2/compare/v1.0.0...v1.0.1) (2025-06-06)
 
 
