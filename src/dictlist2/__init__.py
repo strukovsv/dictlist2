@@ -114,7 +114,7 @@ class DictList2(list):
 
     def distinct(
         self, by: Union[str, List[str], None] = None
-    ) -> List[Dict[str, Any]]:
+    ) -> Self:
         """
         Возвращает уникальные элементы из списка словарей.
 
@@ -163,7 +163,7 @@ class DictList2(list):
                 if key not in seen:
                     seen.add(key)
                     result.append(item)
-            return result
+            return DictList2(result)
 
         # Уникальность только по указанным полям
         keys = [by] if isinstance(by, str) else by
@@ -176,7 +176,7 @@ class DictList2(list):
                 result.append({k: item.get(k) for k in keys})
 
         # Сортировка по тем же полям
-        return sorted(result, key=lambda row: tuple(row[k] for k in keys))
+        return DictList2(sorted(result, key=lambda row: tuple(row[k] for k in keys)))
 
     def filter(
         self, where: Dict[str, Any], order: Union[str, List[str], None] = None
@@ -225,7 +225,7 @@ class DictList2(list):
         self,
         by: Union[str, List[str], None],
         order: Union[str, List[str], Dict[str, str], None] = None,
-    ) -> Iterator[Tuple[Dict[str, Any], List[Dict[str, Any]]]]:
+    ) -> Iterator[Tuple[Dict[str, Any], Self]]:
         """
         Генератор: группирует элементы по уникальным значениям `by` и
         возвращает пары (значения группы, элементы группы). Если указан
@@ -278,7 +278,7 @@ class DictList2(list):
             elif order:
                 group_items = DictList2(group_items).sort(by=order)
 
-            yield group_key, group_items
+            yield group_key, DictList2(group_items)
 
     def join(self, right: Self, key: str) -> Self:
         """
@@ -322,7 +322,7 @@ class DictList2(list):
 
     def left_join(
         self, right: List[Dict[str, Any]], key: str
-    ) -> List[Dict[str, Any]]:
+    ) -> Self:
         """
         Выполняет левое объединение (left join) текущего списка словарей
         с другим по указанному ключу.
@@ -366,7 +366,7 @@ class DictList2(list):
                         merged[k] = v
             result.append(merged)
 
-        return result
+        return DictList2(result)
 
     def group_by(
         self,
@@ -532,7 +532,7 @@ class DictList2(list):
                         f"{field}_{op}" if op != "count" else f"{field}_count"
                     )
                     result[key] = apply_aggregation(group_data, field, op)
-            return [result]
+            return DictList2([result])
 
         # Группировка по ключам
         unique_groups = DictList2(self).distinct(group_keys)
@@ -552,4 +552,4 @@ class DictList2(list):
 
             results.append({**group_filter, **aggregated})
 
-        return results
+        return DictList2(results)
