@@ -1,4 +1,4 @@
-import logging
+import logging  # noqa
 from dictlist2 import DictList2
 
 
@@ -145,14 +145,6 @@ def main():
                 group_columns="date", total_columns="klw"
             ):
                 print(f'    {sum["date"]} {sum["klw"]}')
-
-    # result = data.sort(by="id")
-
-    # assert result == [
-    #     {"id": 1, "name": "Alice"},
-    #     {"id": 2, "name": "Bob"},
-    #     {"id": 3, "name": "Charlie"},
-    # ]
 
 
 if __name__ == "__main__":

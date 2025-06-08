@@ -112,9 +112,7 @@ class DictList2(list):
             sorted(self, key=lambda item: item[by], reverse=reverse)
         )
 
-    def distinct(
-        self, by: Union[str, List[str], None] = None
-    ) -> Self:
+    def distinct(self, by: Union[str, List[str], None] = None) -> Self:
         """
         Возвращает уникальные элементы из списка словарей.
 
@@ -176,7 +174,9 @@ class DictList2(list):
                 result.append({k: item.get(k) for k in keys})
 
         # Сортировка по тем же полям
-        return DictList2(sorted(result, key=lambda row: tuple(row[k] for k in keys)))
+        return DictList2(
+            sorted(result, key=lambda row: tuple(row[k] for k in keys))
+        )
 
     def filter(
         self, where: Dict[str, Any], order: Union[str, List[str], None] = None
@@ -320,9 +320,7 @@ class DictList2(list):
                 result.append({**item, **match})
         return DictList2(result)
 
-    def left_join(
-        self, right: List[Dict[str, Any]], key: str
-    ) -> Self:
+    def left_join(self, right: List[Dict[str, Any]], key: str) -> Self:
         """
         Выполняет левое объединение (left join) текущего списка словарей
         с другим по указанному ключу.
