@@ -139,9 +139,9 @@ def main():
     print(f"{data=}")
     for product, list1 in data.gen_filter(by="product"):
         print(f'{product["product"]}')
-        for model, list2 in DictList2(list1).gen_filter(by="model"):
+        for model, list2 in list1.gen_filter(by="model"):
             print(f'  {model["model"]}')
-            for sum in DictList2(list2).group_by(
+            for sum in list2.group_by(
                 group_columns="date", total_columns="klw"
             ):
                 print(f'    {sum["date"]} {sum["klw"]}')
