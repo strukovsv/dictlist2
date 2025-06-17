@@ -175,7 +175,12 @@ class DictList2(list):
 
         # Сортировка по тем же полям
         return DictList2(
-            sorted(result, key=lambda row: tuple(row[k] for k in keys))
+            sorted(
+                result,
+                key=lambda row: tuple(
+                    row[k] if row[k] is not None else "" for k in keys
+                ),
+            )
         )
 
     def filter(

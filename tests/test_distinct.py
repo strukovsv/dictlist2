@@ -73,3 +73,19 @@ class TestDistinct:
         )
         expected = [{"name": "Alice"}, {"name": "Bob"}]
         assert data.distinct(by="name") == expected
+
+    def test_distinct_by_none_value(self):
+        """Проверка уникальности по нескольким полям"""
+        data = DictList2(
+            [
+                {"id": 1, "project": "A", "name": "Anna"},
+                {"id": 2, "project": None, "name": "Anna"},
+                {"id": 3, "project": "B", "name": "Anna"},
+            ]
+        )
+        expected = [
+            {"project": None},
+            {"project": "A"},
+            {"project": "B"},
+        ]
+        assert data.distinct(by=["project"]) == expected
