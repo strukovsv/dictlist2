@@ -1,3 +1,14 @@
+## [1.0.3](https://github.com/strukovsv/dictlist2/compare/v1.0.2...v1.0.3) (2025-06-17)
+
+
+### bugfix
+
+* force new release ([853a055](https://github.com/strukovsv/dictlist2/commit/853a055a2e4f2c92b5fcd8b8cad925afd6402f05))
+
+### bugs
+
+* ошибка сортировки в distinct ([c3fad3a](https://github.com/strukovsv/dictlist2/commit/c3fad3a45b9cb5d01dfa304ba86377c53f534746))
+
 ## [1.0.2](https://github.com/strukovsv/dictlist2/compare/v1.0.1...v1.0.2) (2025-06-08)
 
 
